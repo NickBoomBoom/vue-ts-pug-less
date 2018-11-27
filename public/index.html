@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- TODO: 嵌入 ios smart app banner ,等 appid -->
+  <!-- <meta name="apple-itunes-app" content="app-id=1023600494, app-argument=tigerbrokersusstock://com.tigerbrokers.usstock/post?postId=7125" /> -->
+  <meta name="viewport" content="width=device-width,target-densitydpi=device-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>知我 APP </title>
+  <script>
+    //designWidth:设计稿的实际宽度值，需要根据实际设置
+    //maxWidth:制作稿的最大宽度值，需要根据实际设置
+    //这段js的最后面有两个参数记得要设置，一个为设计稿实际宽度，一个为制作稿最大宽度，例如设计稿为750，最大宽度为750，则为(750,750)
+    ; (function (designWidth, maxWidth) {
+      var doc = document,
+        win = window,
+        docEl = doc.documentElement,
+        remStyle = document.createElement("style"),
+        tid;
+
+      function refreshRem() {
+        var width = docEl.getBoundingClientRect().width;
+        maxWidth = maxWidth || 540;
+        width > maxWidth && (width = maxWidth);
+        var rem = width * 100 / designWidth;
+        remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+      }
+
+      if (docEl.firstElementChild) {
+        docEl.firstElementChild.appendChild(remStyle);
+      } else {
+        var wrap = doc.createElement("div");
+        wrap.appendChild(remStyle);
+        doc.write(wrap.innerHTML);
+        wrap = null;
+      }
+      //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+      refreshRem();
+
+      win.addEventListener("resize", function () {
+        clearTimeout(tid); //防止执行两次
+        tid = setTimeout(refreshRem, 300);
+      }, false);
+
+      win.addEventListener("pageshow", function (e) {
+        if (e.persisted) { // 浏览器后退的时候重新计算
+          clearTimeout(tid);
+          tid = setTimeout(refreshRem, 300);
+        }
+      }, false);
+
+      if (doc.readyState === "complete") {
+        doc.body.style.fontSize = "16px";
+      } else {
+        doc.addEventListener("DOMContentLoaded", function (e) {
+          doc.body.style.fontSize = "16px";
+        }, false);
+      }
+    })(375, 750);
+  </script>
+  <script>
+    (function () {
+      if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
+        handleFontSize();
+      } else {
+        if (document.addEventListener) {
+          document.addEventListener("WeixinJSBridgeReady", handleFontSize, false);
+        } else if (document.attachEvent) {
+          document.attachEvent("WeixinJSBridgeReady", handleFontSize);
+          document.attachEvent("onWeixinJSBridgeReady", handleFontSize);
+        }
+      }
+      function handleFontSize() {
+        WeixinJSBridge.invoke('setFontSizeCallback', { 'fontSize': 0 });
+        WeixinJSBridge.on('menu:setfont', function () {
+          WeixinJSBridge.invoke('setFontSizeCallback', { 'fontSize': 0 });
+        });
+      }
+    })();
+  </script>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but ky_app_h5 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>
