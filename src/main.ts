@@ -3,8 +3,6 @@ import App from '@/App.vue'
 import router from './router'
 import store from './store'
 import Component from 'vue-class-component'
-import { Indicator, Toast } from 'mint-ui'
-import 'mint-ui/lib/style.css'
 import '@/assets/css/iconfont.css'
 
 // Register the router hooks with their names
@@ -17,14 +15,14 @@ Component.registerHooks([
 console.table(process.env)
 
 router.beforeEach((to, from, next) => {
-  Indicator.close()
+
   next()
 })
 
 Vue.config.productionTip = false
 
 Vue.prototype.$toast = (msg: any): void => {
-  Toast(msg)
+  console.log('toast')
 }
 
 new Vue({
