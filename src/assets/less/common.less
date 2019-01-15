@@ -1,0 +1,44 @@
+/* 清除浮动 */
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  visibility: hidden;
+  height: 0;
+  clear: both;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.text-line {
+  overflow: hidden;
+  /*文字超出用省略号*/
+  text-overflow: ellipsis;
+  /*盒子模型*/
+  display: -webkit-box;
+  /*显示的文本行数*/
+  -webkit-line-clamp: 1;
+  /*子元素的垂直排列方式*/
+  -webkit-box-orient: vertical;
+}
+
+.text-line2 {
+  overflow: hidden;
+  /*文字超出用省略号*/
+  text-overflow: ellipsis;
+  /*盒子模型*/
+  display: -webkit-box;
+  /*显示的文本行数*/
+  -webkit-line-clamp: 2;
+  /*子元素的垂直排列方式*/
+  -webkit-box-orient: vertical;
+}

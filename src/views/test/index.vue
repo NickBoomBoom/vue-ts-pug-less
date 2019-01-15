@@ -22,17 +22,17 @@
 <script lang="ts">
 import { Component, Vue, Provide, Watch } from "vue-property-decorator";
 import { State, Action, Getter, Mutation } from "vuex-class";
-import List from './list.vue'
+import List from "./list.vue";
 
 @Component({
-  components:{
+  components: {
     List
   }
 })
 class Test extends Vue {
   // 继承 vue 全局方法
-  constructor () {
-    super()
+  constructor() {
+    super();
   }
 
   // data
@@ -40,48 +40,50 @@ class Test extends Vue {
   @Provide() pageName: string = "测试页面";
   @Provide() list: string[] = ["1", "2", "3"];
   @Provide() pageTitle: string = "";
-  @Provide() testList: object[] =[
-    {id: 1, text: '列表1'},
-    {id: 2, text: '列表2'},
-    {id: 3, text: '列表3'},
-  ]
+  @Provide() testList: object[] = [
+    { id: 1, text: "列表1" },
+    { id: 2, text: "列表2" },
+    { id: 3, text: "列表3" }
+  ];
   // 元祖数组写法
-  @Provide() arr3: [string, number, ()=>void ] = ['1', 2, () => console.log('元祖数组')]
+  @Provide() arr3: [string, number, () => void] = [
+    "1",
+    2,
+    () => console.log("元祖数组")
+  ];
   // 只读属性修饰符
-  @Provide() readonly age: number = 11
+  @Provide() readonly age: number = 11;
 
   // computed 计算属性
-  get comNum (): number {
-    return this.num
+  get comNum(): number {
+    return this.num;
   }
   // vuex
   @State title!: string;
   @Mutation SET_TITLE!: (title: string) => void;
-  @Action async_title!:() => void;
+  @Action async_title!: () => void;
 
   // 生命周期
-  created() {
+  created() {}
 
-  }
-  
-  jump():void {
-    this.$router.push({name: 'other', params:{id: '999'}})
+  jump(): void {
+    this.$router.push({ name: "other", params: { id: "999" } });
   }
 
   // watch
   @Watch("pageTitle")
   onchange(value: string, oldValue: string) {
     console.log("pageTitle ==>", value, oldValue);
-    this.SET_TITLE(value)
+    this.SET_TITLE(value);
   }
 
   // 路由
-  beforeRouteEnter (to, from, next) {
+  beforeRouteEnter(to, from, next) {
     // 在渲染该组件的对应路由被 confirm 前调用
     // 不！能！获取组件实例 `this`
     // 因为当守卫执行前，组件实例还没被创建
-    console.log(to, from, next)
-    next()
+    console.log(to, from, next);
+    next();
   }
 }
 export default Test;
@@ -99,26 +101,26 @@ input {
   border: 1px solid skyblue;
 }
 button {
-  font-size: .3rem;
+  font-size: 0.3rem;
   color: blue;
-  background-color: aquamarine
+  background-color: aquamarine;
 }
 .title {
   font-weight: 700;
 }
 .subtitle {
-  color: brown
+  color: brown;
 }
 .flex {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin-top: .2rem;
+  margin-top: 0.2rem;
 }
 .box {
-  width: .3rem;
-  height: .6rem;
+  width: 3rem;
+  height: 0.6rem;
   background-color: red;
 }
 </style>

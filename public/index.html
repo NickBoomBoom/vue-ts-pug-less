@@ -7,7 +7,7 @@
   <!-- TODO: 嵌入 ios smart app banner ,等 appid -->
   <!-- <meta name="apple-itunes-app" content="app-id=1023600494, app-argument=tigerbrokersusstock://com.tigerbrokers.usstock/post?postId=7125" /> -->
   <meta name="viewport" content="width=device-width,target-densitydpi=device-dpi,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>知我 APP </title>
+  <title>vue + pug + less</title>
   <script>
     //designWidth:设计稿的实际宽度值，需要根据实际设置
     //maxWidth:制作稿的最大宽度值，需要根据实际设置
@@ -58,8 +58,8 @@
         }, false);
       }
     })(375, 750);
-  </script>
-  <script>
+
+    // android 禁止微信跳整字体大小
     (function () {
       if (typeof WeixinJSBridge == "object" && typeof WeixinJSBridge.invoke == "function") {
         handleFontSize();
@@ -79,7 +79,7 @@
       }
     })();
   </script>
-  <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 </head>
 
 <body>
