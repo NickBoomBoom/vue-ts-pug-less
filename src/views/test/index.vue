@@ -15,7 +15,9 @@
 
     div.flex
       div.box flex布局测试
-
+    
+    h1 Vant 组件测试
+    DatetimePicker.date-l(v-model="currentDate" type="date" :min-date="minDate")
 
 </template>
 
@@ -23,10 +25,12 @@
 import { Component, Vue, Provide, Watch } from "vue-property-decorator";
 import { State, Action, Getter, Mutation } from "vuex-class";
 import List from "./list.vue";
+import { DatetimePicker } from "vant";
 
 @Component({
   components: {
-    List
+    List,
+    DatetimePicker
   }
 })
 class Test extends Vue {
@@ -53,6 +57,11 @@ class Test extends Vue {
   ];
   // 只读属性修饰符
   @Provide() readonly age: number = 11;
+  @Provide() minHour: number = 10;
+  @Provide() maxHour: number = 20;
+  @Provide() minDate: any = new Date();
+  @Provide() maxDate: any = new Date(2019, 10, 1);
+  @Provide() currentDate: any = new Date();
 
   // computed 计算属性
   get comNum(): number {
@@ -122,6 +131,10 @@ button {
   width: 3rem;
   height: 0.6rem;
   background-color: red;
+}
+.date-l {
+  border: 1px solid red;
+  margin-top: .3rem;
 }
 </style>
 

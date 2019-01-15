@@ -6,6 +6,7 @@ import Component from "vue-class-component";
 import { platform } from "@/utils/share";
 import "@/utils/filter";
 import "@/assets/less/index.less"
+import 'vant/lib/index.css';
 
 console.table(process.env);
 
@@ -51,10 +52,6 @@ router.beforeEach((to, from, next) => {
 });
 
 Vue.config.productionTip = false;
-
-Vue.prototype.$toast = (msg: any): void => {
-  console.log("toast");
-};
 
 new Vue({
   router,

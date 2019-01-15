@@ -1,4 +1,4 @@
-# vue-ts-pug-less
+# vue-ts-pug-less(v1.0)
 
 	核心:  vue +  TS
 	      具体实例 可在 views/test 下查看vue 的 ts 写法
@@ -17,7 +17,12 @@
 
 ```
 
+# UPDATE
 
+v1.0: 
+
+ 	1.  新增 vant 移动端组件. [Vant 直通车](https://youzan.github.io/vant/#/zh-CN/intro)
+ 	2.  各项配置已完全,其他看自身项目自配
 
 ## USE
 
@@ -43,9 +48,9 @@
        暂未解决, 替代方案: require(url)
        
     5. webpack 会将10kb 以下的图片自动转为 base64, 所以在 dist 文件中有部分缺失的 img, 不用关注
-
+    
     6. vue cli3.0  中默认开启 autoprefixer,今天开始无需关注兼容写法,更注重于业务逻辑代码. 等出问题在看 css 兼容.
-
+    
     7. vue build 的prod打包是会压缩代码的. test 打包不压缩,文件过大,加载会很长.但不用关注.
-
+    
     8. css 样式污染不完全解决方案: 使用 less scoped, 每个组件外层添加 root 根元素标记, 以此来避免样式污染.(css MODULES 方案暂不考虑,相对而言,繁琐且不好定位样式)
